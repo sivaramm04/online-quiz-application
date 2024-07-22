@@ -1,0 +1,89 @@
+Question 1: Who invented Java Programming?
+1. James Gosling
+2. Guido van Rossum
+3. Dennis Ritchie
+4. Bjarne Stroustrup
+Enter your answer (1-4): 1
+
+Question 2:  Which statement is true about Java?
+1. Java is a sequence-dependent programming language
+2. Java is a platform-independent programming language
+3. Java is a code dependent programming language
+4. Java is a platform-dependent programming language
+Enter your answer (1-4): 2
+
+Question 3: Which component is used to compile, debug and execute the java programs?
+1. JRE
+2. JIT
+3. JDK
+4. JVM
+Enter your answer (1-4): 3
+
+Question 4: Which one of the following is not a Java feature?
+1. Object-oriented
+2. Portable
+3. Dynamic and Extensible
+4. Use of pointers
+Enter your answer (1-4): 4
+
+Question 5: Which of these cannot be used for a variable name in Java?
+1. keyword
+2. identifier & keyword
+3. identifier
+4. none of the mentioned
+Enter your answer (1-4): 1
+
+Question 6: What is the extension of java code files?
+1. .js
+2. .java
+3. .txt
+4. .class
+Enter your answer (1-4): 2
+
+Question 7: What is not the use of "this" keyword in Java?
+1. Referring to the instance variable when a local variable has the same name
+2. Passing itself to another method
+3. Passing itself to the method of the same class
+4. Calling another constructor in constructor chaining
+Enter your answer (1-4): 3
+
+Question 8: Which of these are selection statements in Java?
+1. break
+2. continue
+3. for()
+4. if()
+Enter your answer (1-4): 4
+
+Question 9: Which of these keywords are used for the block to be examined for exceptions?
+1. try
+2. check
+3. throw
+4. catch
+Enter your answer (1-4): 1
+
+Question 10:  Which one of the following is not an access modifier?
+1. Protected
+2. Void
+3. Public
+4. Private
+Enter your answer (1-4): 2
+
+Type 'submit' to see your results: submit
+___________________________________________________________
+Quiz complete! Your score is: 10 out of 10
+You answered 10 out of 10 questions correctly.
+Your score percentage is: 100.00%
+___________________________________________________________
+Congratulations! You got a perfect score!
+___________________________________________________________
+
+Feedback Form
+Rate the quiz from 1 to 5 (1 being poor and 5 being excellent): 4
+What did you like about the quiz? we know some information
+What can be improved? please give a quiz in deeply manner
+___________________________________________________________
+
+Thank you for your feedback!
+Your rating: 4
+What you liked: we know some information
+Suggestions for improvement: please give a quiz in deeply manner

@@ -1,0 +1,197 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class QuizApp {
+    public static void main(String[] args) {
+        // Define the Question class
+        class Question {
+            private String questionText;
+            private String[] options;
+            private int correctAnswer; // Index of the correct answer in the options array
+
+            public Question(String questionText, String[] options, int correctAnswer) {
+                this.questionText = questionText;
+                this.options = options;
+                this.correctAnswer = correctAnswer;
+            }
+
+            public String getQuestionText() {
+                return questionText;
+            }
+
+            public String[] getOptions() {
+                return options;
+            }
+
+            public int getCorrectAnswer() {
+                return correctAnswer;
+            }
+        }
+
+        // Define the Quiz class
+        class Quiz {
+            private List<Question> questions;
+            private int score;
+
+            public Quiz() {
+                questions = new ArrayList<>();
+                score = 0;
+            }
+
+            public void addQuestion(Question question) {
+                questions.add(question);
+            }
+
+            public Question getQuestion(int index) {
+                return questions.get(index);
+            }
+
+            public int getNumQuestions() {
+                return questions.size();
+            }
+
+            public void answerQuestion(int questionIndex, int userAnswer) {
+                Question question = questions.get(questionIndex);
+                if (userAnswer == question.getCorrectAnswer()) {
+                    score++;
+                }
+            }
+
+            public int getScore() {
+                return score;
+            }
+        }
+
+        // Main QuizApp logic
+        Quiz quiz = new Quiz();
+        Scanner scanner = new Scanner(System.in);
+
+        // Add questions to the quiz (with correct answer indices)
+        quiz.addQuestion(new Question("Who invented Java Programming?",
+                new String[]{"James Gosling","Guido van Rossum","Dennis Ritchie","Bjarne Stroustrup"}, 0));
+        quiz.addQuestion(new Question(" Which statement is true about Java?",
+                new String[]{"Java is a sequence-dependent programming language","Java is a platform-independent programming language",
+"Java is a code dependent programming language",
+"Java is a platform-dependent programming language"}, 1));
+                quiz.addQuestion(new Question("Which component is used to compile, debug and execute the java programs?",
+                new String[]{"JRE","JIT","JDK","JVM"}, 2));
+                quiz.addQuestion(new Question("Which one of the following is not a Java feature?",
+                new String[]{"Object-oriented","Portable","Dynamic and Extensible","Use of pointers"}, 3));
+                quiz.addQuestion(new Question("Which of these cannot be used for a variable name in Java?",
+                new String[]{"keyword","identifier & keyword","identifier","none of the mentioned"}, 0));
+                quiz.addQuestion(new Question("What is the extension of java code files?",
+                new String[]{".js",".java",".txt",".class"
+}, 1));
+                quiz.addQuestion(new Question("What is not the use of \“this\” keyword in Java?",
+                new String[]{"Referring to the instance variable when a local variable has the same name","Passing itself to another method","Passing itself to the method of the same class",
+"Calling another constructor in constructor chaining"}, 2));
+                quiz.addQuestion(new Question("Which of these are selection statements in Java?",
+                new String[]{"break","continue","for()","if()"}, 3));
+                quiz.addQuestion(new Question("Which of these keywords are used for the block to be examined for exceptions?",
+                new String[]{"try","check","throw","catch"
+}, 0));
+                quiz.addQuestion(new Question(" Which one of the following is not an access modifier?",
+                new String[]{"Protected","Void","Public","Private"}, 1));
+
+        // Array to store user answers
+        int[] userAnswers = new int[quiz.getNumQuestions()];
+
+        // Display questions and get user responses
+        for (int i = 0; i < quiz.getNumQuestions(); i++) {
+            Question q = quiz.getQuestion(i);
+
+            // Display question
+            System.out.println("Question " + (i + 1) + ": " + q.getQuestionText());
+
+            // Display options
+            String[] options = q.getOptions();
+            for (int j = 0; j < options.length; j++) {
+                System.out.println((j + 1) + ". " + options[j]);
+            }
+
+            // Prompt user for answer
+            int userAnswer = -1;
+            while (userAnswer < 1 || userAnswer > options.length) {
+                System.out.print("Enter your answer (1-" + options.length + "): ");
+                if (scanner.hasNextInt()) {
+                    userAnswer = scanner.nextInt();
+                    if (userAnswer < 1 || userAnswer > options.length) {
+                        System.out.println("Invalid input. Please enter a number between 1 and " + options.length + ".");
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a number.");
+                    scanner.next(); // consume invalid input
+                }
+            }
+
+            // Adjust user answer index (convert to 0-based)
+            userAnswers[i] = userAnswer - 1;
+
+            System.out.println(); // Blank line for readability
+        }
+
+        // Wait for user to type "submit"
+        System.out.print("Type 'submit' to see your results: ");
+        String userInput = scanner.next();
+        while (!userInput.equalsIgnoreCase("submit")) {
+            System.out.print("Invalid input. Type 'submit' to see your results: ");
+            userInput = scanner.next();
+        }
+
+        // Check all answers and calculate score
+        for (int i = 0; i < quiz.getNumQuestions(); i++) {
+            quiz.answerQuestion(i, userAnswers[i]);
+        }
+        System.out.println("___________________________________________________________");
+
+        // Display final score and feedback
+        System.out.println("Quiz complete! Your score is: " + quiz.getScore() + " out of " + quiz.getNumQuestions());
+        double percentage = (double) quiz.getScore() / quiz.getNumQuestions() * 100;
+        System.out.println("You answered " + quiz.getScore() + " out of " + quiz.getNumQuestions() + " questions correctly.");
+        System.out.printf("Your score percentage is: %.2f%%\n", percentage);
+System.out.println("___________________________________________________________");
+        // Provide feedback based on score
+        if (percentage == 100) {
+            System.out.println("Congratulations! You got a perfect score!");
+        } else if (percentage >= 75) {
+            System.out.println("Well done! You did a great job!");
+        } else if (percentage >= 50) {
+            System.out.println("Good effort! Keep practicing to improve.");
+        } else {
+            System.out.println("Keep studying and you'll improve!");
+        }
+System.out.println("___________________________________________________________");
+        // Feedback form
+        System.out.println("\nFeedback Form");
+        System.out.print("Rate the quiz from 1 to 5 (1 being poor and 5 being excellent): ");
+        int rating = -1;
+        while (rating < 1 || rating > 5) {
+            if (scanner.hasNextInt()) {
+                rating = scanner.nextInt();
+                if (rating < 1 || rating > 5) {
+                    System.out.print("Invalid input. Please enter a number between 1 and 5: ");
+                }
+            } else {
+                System.out.print("Invalid input. Please enter a number between 1 and 5: ");
+                scanner.next(); // consume invalid input
+            }
+        }
+
+        System.out.print("What did you like about the quiz? ");
+        scanner.nextLine(); // Consume the leftover newline
+        String likes = scanner.nextLine();
+
+        System.out.print("What can be improved? ");
+        String improvements = scanner.nextLine();
+System.out.println("___________________________________________________________");
+        // Display feedback summary
+        System.out.println("\nThank you for your feedback!");
+        System.out.println("Your rating: " + rating);
+        System.out.println("What you liked: " + likes);
+        System.out.println("Suggestions for improvement: " + improvements);
+
+        // Close scanner
+        scanner.close();
+    }
+}
